@@ -4,20 +4,29 @@ import Button from "./components/Button";
 function App() {
     const submit = e => {
         e.preventDefault();
-        const tip = (state.total / 100) * state.percentage;
-        setState({ ...state, tip });
+        setUpdating(false);
+        const tip = (total.value / 100) * percentage.value;
+        setTip(tip);
     };
 
-    const initial = {
-        total: null,
-        percentage: null,
-        tip: null
-    };
+    function useControlledInput(initial) {
+        const [value, setValue] = useState(initial);
+        return {
+            value,
+            onChange: e => {
+                setUpdating(true);
+                setValue(parseInt(e.target.value, 10));
+            }
+        };
+    }
 
-    const [state, setState] = useState(initial);
+    const total = useControlledInput(null);
+    const percentage = useControlledInput(null);
+    const [tip, setTip] = useState(null);
+    const [updating, setUpdating] = useState(false);
 
-    const setTotal = total => setState({ ...state, total });
-    const setPercentage = percentage => setState({ ...state, percentage });
+    // const setTotal = total => setState({ ...state, total });
+    // const setPercentage = percentage => setState({ ...state, percentage });
 
     return (
         <div className="App">
@@ -37,10 +46,7 @@ function App() {
                                 type="number"
                                 aria-describedby="total-desc"
                                 name="total"
-                                value={state.total}
-                                onChange={e => {
-                                    setTotal(parseInt(e.target.value, 10));
-                                }}
+                                {...total}
                             />
                             <small
                                 id="total-desc"
@@ -62,10 +68,7 @@ function App() {
                                 type="number"
                                 aria-describedby="tip-desc"
                                 name="tip"
-                                value={state.percentage}
-                                onChange={e => {
-                                    setPercentage(parseInt(e.target.value, 10));
-                                }}
+                                {...percentage}
                             />
                             <small id="tip-desc" className="f6 black-60 db mb2">
                                 Enter tip as percentage of the bill (e.g.
@@ -81,21 +84,28 @@ function App() {
                             Calculate!
                         </Button>
                     </div>
-                    {state.tip === 0 && (
+                    {tip === 0 && (
                         <div className="pv1">
                             <h2 className="orange">
                                 Please enter some numbers above!
                             </h2>
                         </div>
                     )}
-                    {state.tip !== 0 && state.tip !== null && (
+                    {tip !== 0 && tip !== null && !updating && (
                         <div className="pv1">
-                            <h2 className="result">
-                                ${state.total} (total) + ${state.tip} (tip) ={" "}
+                            <h2 className="result">So...</h2>
+                            <h3>
+                                Total: ${total.value} + <br />
+                                Tip: ${Math.round(tip * 100) / 100}
+                                =&nbsp;
+                                <br />
+                                <br />
                                 <span className="purple">
-                                    ${state.total + state.tip}
+                                    $
+                                    {Math.round((total.value + tip) * 100) /
+                                        100}
                                 </span>
-                            </h2>
+                            </h3>
                         </div>
                     )}
                 </form>
