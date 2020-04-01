@@ -11,7 +11,7 @@ function App() {
             <header className="tc pv4 pv5-ns">
                 <h1 className="f5 f4-ns fw6 mid-gray">Tip calculator</h1>
             </header>
-            <Button onClick={submit}>Calculate</Button>
+            <Button onClick={submit}>Calculate!!!</Button>
         </div>
     );
 }
