@@ -18,8 +18,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "css": "tachyons src/css/app.css > src/index.css",
-        "css-prod": "tachyons src/css/app.css > src/index.css --minify",
-        "prestart": "npm run css"
+        "css-prod": "tachyons src/css/app.css > src/index.css --minify"
     },
     "eslintConfig": {
         "extends": "react-app"
