@@ -19,8 +19,7 @@
         "eject": "react-scripts eject",
         "css": "tachyons src/css/app.css > src/index.css",
         "css-prod": "tachyons src/css/app.css > src/index.css --minify",
-        "prestart": "npm run css",
-        "prebuild": "npm run css-prod"
+        "prestart": "npm run css"
     },
     "eslintConfig": {
         "extends": "react-app"
