@@ -20,8 +20,8 @@ function App() {
         };
     }
 
-    const total = useControlledInput(null);
-    const percentage = useControlledInput(null);
+    const total = useControlledInput("");
+    const percentage = useControlledInput("");
     const [tip, setTip] = useState(null);
     const [updating, setUpdating] = useState(false);
 
