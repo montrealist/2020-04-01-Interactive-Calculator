@@ -15,7 +15,7 @@ function App() {
             value,
             onChange: e => {
                 setUpdating(true);
-                setValue(parseInt(e.target.value, 10));
+                setValue(parseInt(e.target.value || 0, 10));
             }
         };
     }
