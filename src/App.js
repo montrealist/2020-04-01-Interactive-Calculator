@@ -27,7 +27,10 @@ function App() {
 
     // const setTotal = total => setState({ ...state, total });
     // const setPercentage = percentage => setState({ ...state, percentage });
-
+    const inlineStyle = {
+        width: "15%",
+        display: "inline-block"
+    };
     return (
         <div className="App">
             <section className="pa3 black-90 bg-white">
@@ -95,9 +98,11 @@ function App() {
                         <div className="pv1">
                             <h2 className="result">So...</h2>
                             <h3>
-                                Total: ${total.value} + <br />
-                                Tip: ${Math.round(tip * 100) / 100}
-                                =&nbsp;
+                                <span style={inlineStyle}>Total:</span> $
+                                {total.value} + <br />
+                                <span style={inlineStyle}>Tip:</span> $
+                                {Math.round(tip * 100) / 100}
+                                &nbsp;=&nbsp;
                                 <br />
                                 <br />
                                 <span className="purple">
